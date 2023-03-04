@@ -1,0 +1,25 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebApiPractica.Models
+{
+    public class equipos
+    
+    {
+        internal int id_equipos;
+
+        [Key]
+        public int id { get; set; }
+        public string nombre { get; set; }
+        public string descripcion { get; set; }
+        public int? tipo_equipo_id { get; set; }
+        public int? marca_id { get; set; }
+        public string modelo { get; set; }
+        public int? anio_compra { get; set; }
+        public decimal costo { get; set; }
+        public int? vida_util { get; set; }
+        public int? estado_equipo_id { get; set;}
+        public string estado { get; set; }
+
+
+    }
+}
