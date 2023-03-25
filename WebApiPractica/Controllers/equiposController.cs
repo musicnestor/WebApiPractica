@@ -22,7 +22,11 @@ namespace WebApiPractica.Controllers
 
         public IActionResult Get()
         {
-            List<equipos> ListadoEquipo = (from e in _equiposContexto.equipos select e).ToList();
+            var ListadoEquipo = (from e in _equiposContexto.equipos
+                                           
+                                           select new { 
+                                           
+                                           }).ToList();
             if (ListadoEquipo.Count == 0)
             {
                 return NotFound();
@@ -36,7 +40,7 @@ namespace WebApiPractica.Controllers
 
         {
             equipos? equipo = (from e in _equiposContexto.equipos
-                               where e.id_equipos == id0
+                               where e.id_equipos == id
                                select e).FirstOrDefault();
             if (equipo == null)
             {
@@ -119,8 +123,12 @@ namespace WebApiPractica.Controllers
                     return NotFound();
                 }
 
-                _equiposContexto.equipos.Attach(equipo);
-                _equiposContexto.equipos.Remove(equipo);
+                // _equiposContexto.equipos.Attach(equipo);
+                //_equiposContexto.equipos.Remove(equipo);
+                equipo.estado = "I";
+                _equiposContexto.Entry(equipo).State = EntityState.Modified;
+
+
                 _equiposContexto.SaveChanges();
                 return Ok(equipo);
             }
